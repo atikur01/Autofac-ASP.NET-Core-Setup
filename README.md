@@ -78,43 +78,6 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     containerBuilder.RegisterModule(new YourAutofacModule());
 });
 ```
-
-## Implementing a Plugin Architecture
-
-To implement a plugin system, first define discoverable plugins:
-
-```csharp
-[AttributeUsage(AttributeTargets.Class)]
-public class DiscoverablePluginAttribute : Attribute
-{
-}
-
-[DiscoverablePlugin]
-public class SamplePlugin : IPlugin
-{
-    public void Execute()
-    {
-        // Plugin logic
-    }
-}
-```
-
-Then, dynamically load and register plugins:
-
-```csharp
-var builder = new ContainerBuilder();
-var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-var pluginTypes = assemblies.SelectMany(a => a.GetTypes())
-                            .Where(t => t.GetCustomAttributes<DiscoverablePluginAttribute>().Any());
-
-foreach (var pluginType in pluginTypes)
-{
-    builder.RegisterType(pluginType).As<IPlugin>().SingleInstance();
-}
-
-var container = builder.Build();
-```
-
 ## Best Practices
 
 - **Organize Registrations**: Use modules to structure dependency registration.
@@ -124,6 +87,5 @@ var container = builder.Build();
 ## References
 
 - [Autofac Official Documentation](https://docs.autofac.org/en/stable/integration/aspnetcore.html)
-- [Plugin Architecture in ASP.NET Core](https://www.codeproject.com/Articles/5365839/Plugin-Architecture-in-ASP-NET-Core-How-To-Master)
 - [YouTube - Autofac in ASP.NET Core](https://www.youtube.com/watch?v=FJziGcvuzmo)
 
