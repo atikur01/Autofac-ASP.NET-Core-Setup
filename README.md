@@ -1,4 +1,4 @@
-# Autofac Flexible Module System in ASP.NET Core 9
+# Autofac Flexible Module System in ASP.NET Core
 
 This repository demonstrates how to integrate Autofac, a powerful IoC (Inversion of Control) container, into an ASP.NET Core 9 web application using a flexible module system.
 
