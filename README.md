@@ -33,7 +33,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
     // Register Autofac modules
-    containerBuilder.RegisterModule(new YourAutofacModule());
+    containerBuilder.RegisterModule(new WebModule());
 });
 
 // Add services
@@ -60,7 +60,7 @@ Autofac modules allow better organization of service registrations. Here’s how
 ```csharp
 using Autofac;
 
-public class YourAutofacModule : Module
+public class WebModule : Module
 {
     protected override void Load(ContainerBuilder builder)
     {
@@ -75,7 +75,7 @@ Register the module inside `Program.cs`:
 ```csharp
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
-    containerBuilder.RegisterModule(new YourAutofacModule());
+    containerBuilder.RegisterModule(new WebModule());
 });
 ```
 ## Best Practices
@@ -87,5 +87,5 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 ## References
 
 - [Autofac Official Documentation](https://docs.autofac.org/en/stable/integration/aspnetcore.html)
-- [YouTube - Autofac in ASP.NET Core](https://www.youtube.com/watch?v=FJziGcvuzmo)
+
 
